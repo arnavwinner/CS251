@@ -1,26 +1,31 @@
 # CS251: Introduction to Language Processing
-To make compiler for this course on Pascal
 
-Objective: To make the lexical analyzer (tokens) for Programming language "Pascal".
+## Building a Pascal Lexical Analyzer
 
-Instructions (commands to be written in terminal) to execute the Lexical Analyzer (Pascal.l file)
+**Objective**: Develop a lexical analyzer (token generator) for the "Pascal" programming language.
 
-1) lex Pascal.l
-2) gcc lex.yy.c -o lexer -ll
-3) ./lexer
+## Instructions
 
-Now you can analyze any pascal syntax by running ./lexer executable file and giving input through terminal.
+Follow these steps to execute the Pascal Lexical Analyzer (Pascal.l file):
 
-References used for making lexical analyzer for "Pascal" language:
+1. Generate the lexer code:
 
-1) https://stackoverflow.com/questions/14660878/regular-expression-for-comments-in-pascal
+2. Compile the lexer code:
 
-2) https://www.tutorialspoint.com/pascal/index.htm
+3. Run the lexer:
 
-3) https://www.gnu-pascal.de/gpc/RegEx.html
+Now, you can analyze Pascal syntax by running the `./lexer` executable and providing input through the terminal.
 
-4) https://en.wikipedia.org/wiki/Lexical_analysis
+## References
 
-5) https://en.wikipedia.org/wiki/Pascal_(programming_language)
+Here are the references used while creating the lexical analyzer for "Pascal":
 
+- [Stack Overflow: Regular Expression for Comments in Pascal](https://stackoverflow.com/questions/14660878/regular-expression-for-comments-in-pascal)
+- [TutorialsPoint: Pascal Programming Language](https://www.tutorialspoint.com/pascal/index.htm)
+- [GNU Pascal: Regular Expressions](https://www.gnu-pascal.de/gpc/RegEx.html)
+- [Wikipedia: Lexical Analysis](https://en.wikipedia.org/wiki/Lexical_analysis)
+- [Wikipedia: Pascal Programming Language](https://en.wikipedia.org/wiki/Pascal_(programming_language))
 
+Feel free to explore these references for more insights into lexical analysis and the Pascal programming language.
+
+---
