@@ -14,7 +14,7 @@ Follow these steps to execute the Pascal Lexical Analyzer (Pascal.l file):
 
 3. Run the lexer: `./lexer`
 
-Now, you can analyze Pascal syntax by running the `./lexer` executable and providing input through the terminal.
+Now, you can analyze Pascal syntax by running the `./lexer` executable and providing input through the terminal by running the syntax line by line and getting the desired output.
 
 ## References
 
