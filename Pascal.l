@@ -86,18 +86,54 @@ CLOSE_BRACE "}"
 LINE_COMMENT "//".*
 BLOCK_COMMENT "(*"[^*)]*"*)"|"{"[^}]*"}" 
 
+INVOKE_FUNCTION {IDENTIFIER}"("[^)]*")"
+
 %%
 {LINE_COMMENT}|{BLOCK_COMMENT} {
     // Ignore comments
 }
 
-{PROGRAM}|{VAR}|{BEGIN}|{END}|{IF}|{THEN}|{ELSE}|{WHILE}|{FOR}|{DO}|{REPEAT}|{UNTIL}|{CASE}|{OF}|{FUNCTION}|{PROCEDURE}|{BOOLEAN_TRUE}|{BOOLEAN_FALSE}|{ARRAY}|{CONST}|{DIV}|{DOWNTO}|{FILE}|{GOTO}|{IN}|{LABEL}|{MODULO}|{NIL}|{PACKED}|{RECORD}|{SET}|{TO}|{TYPE}|{WITH} {
-    printf("KEYWORD: %s\n", yytext);
-}
+{PROGRAM}            printf("TOKEN: PROGRAM\n");
+{VAR}                printf("TOKEN: VAR\n");
+{BEGIN}              printf("TOKEN: BEGIN\n");
+{END}                printf("TOKEN: END\n");
+{IF}                 printf("TOKEN: IF\n");
+{THEN}               printf("TOKEN: THEN\n");
+{ELSE}               printf("TOKEN: ELSE\n");
+{WHILE}              printf("TOKEN: WHILE\n");
+{FOR}                printf("TOKEN: FOR\n");
+{DO}                 printf("TOKEN: DO\n");
+{REPEAT}             printf("TOKEN: REPEAT\n");
+{UNTIL}              printf("TOKEN: UNTIL\n");
+{CASE}               printf("TOKEN: CASE\n");
+{OF}                 printf("TOKEN: OF\n");
+{FUNCTION}           printf("TOKEN: FUNCTION\n");
+{PROCEDURE}          printf("TOKEN: PROCEDURE\n");
+{BOOLEAN_TRUE}       printf("TOKEN: BOOLEAN_TRUE\n");
+{BOOLEAN_FALSE}      printf("TOKEN: BOOLEAN_FALSE\n");
+{ARRAY}              printf("TOKEN: ARRAY\n");
+{CONST}              printf("TOKEN: CONST\n");
+{DIV}                printf("TOKEN: DIV\n");
+{DOWNTO}             printf("TOKEN: DOWNTO\n");
+{FILE}               printf("TOKEN: FILE\n");
+{GOTO}               printf("TOKEN: GOTO\n");
+{IN}                 printf("TOKEN: IN\n");
+{LABEL}              printf("TOKEN: LABEL\n");
+{MODULO}             printf("TOKEN: MODULO\n");
+{NIL}                printf("TOKEN: NIL\n");
+{PACKED}             printf("TOKEN: PACKED\n");
+{RECORD}             printf("TOKEN: RECORD\n");
+{SET}                printf("TOKEN: SET\n");
+{TO}                 printf("TOKEN: TO\n");
+{TYPE}               printf("TOKEN: TYPE\n");
+{WITH}               printf("TOKEN: WITH\n");
 
-{INTEGER}|{REAL}|{CHAR}|{STRING}|{BOOLEAN} {
-    printf("DATA_TYPE: %s\n", yytext);
-}
+{INTEGER}            printf("DATA_TYPE: INTEGER\n");
+{REAL}               printf("DATA_TYPE: REAL\n");
+{CHAR}               printf("DATA_TYPE: CHAR\n");
+{STRING}             printf("DATA_TYPE: STRING\n");
+{BOOLEAN}            printf("DATA_TYPE: BOOLEAN\n");
+{INVOKE_FUNCTION}    printf("INVOKE: %s\n",yytext);
 
 {IDENTIFIER} {
     printf("IDENTIFIER: %s\n", yytext);
@@ -118,14 +154,16 @@ BLOCK_COMMENT "(*"[^*)]*"*)"|"{"[^}]*"}"
 {CHAR_LITERAL} {
     printf("CHAR_LITERAL: %s\n", yytext);
 }
+{ASSIGN} printf("ASSIGNMENT_OPERATOR: %s\n",yytext);
 
 {PLUS}|{MINUS}|{MULTIPLY}|{DIVIDE}|{MOD} {
     printf("OPERATOR: %s\n", yytext);
 }
 
-{ASSIGN}|{EQUAL}|{NOT_EQUAL}|{LESS_THAN}|{LESS_THAN_EQUAL}|{GREATER_THAN}|{GREATER_THAN_EQUAL} {
+{EQUAL}|{NOT_EQUAL}|{LESS_THAN}|{LESS_THAN_EQUAL}|{GREATER_THAN}|{GREATER_THAN_EQUAL} {
     printf("COMPARISON_OPERATOR: %s\n", yytext);
 }
+
 
 {SEMICOLON}|{COLON}|{COMMA}|{OPEN_PAREN}|{CLOSE_PAREN}|{OPEN_BRACE}|{CLOSE_BRACE} {
     printf("PUNCTUATION: %s\n", yytext);
