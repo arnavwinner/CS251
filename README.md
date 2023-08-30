@@ -8,11 +8,11 @@
 
 Follow these steps to execute the Pascal Lexical Analyzer (Pascal.l file):
 
-1. Generate the lexer code:
+1. Generate the lexer code: `lex Pascal.l`
 
-2. Compile the lexer code:
+2. Compile the lexer code: `gcc lex.yy.c -o lexer -ll`
 
-3. Run the lexer:
+3. Run the lexer: `./lexer`
 
 Now, you can analyze Pascal syntax by running the `./lexer` executable and providing input through the terminal.
 
