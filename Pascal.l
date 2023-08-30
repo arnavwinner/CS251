@@ -14,7 +14,6 @@ FLOAT_LITERAL {DIGIT}+"."{DIGIT}+|"."{DIGIT}+
 STRING_LITERAL \"([^\\\"]|\\.)*\"
 CHAR_LITERAL \'[^']\'
 
-/* Primitive data types */
 INTEGER "integer"
 REAL "real"
 CHAR "char"
@@ -34,6 +33,9 @@ LESS_THAN "<"
 LESS_THAN_EQUAL "<="
 GREATER_THAN ">"
 GREATER_THAN_EQUAL ">="
+AND "and"
+OR "or"
+NOT "not"
 
 /* Keywords */
 PROGRAM "program"
@@ -54,6 +56,22 @@ FUNCTION "function"
 PROCEDURE "procedure"
 BOOLEAN_TRUE "true"
 BOOLEAN_FALSE "false"
+ARRAY "array"
+CONST "const"
+DIV "div"
+DOWNTO "downto"
+FILE "file"
+GOTO "goto"
+IN "in"
+LABEL "label"
+MODULO "mod"
+NIL "nil"
+PACKED "packed"
+RECORD "record"
+SET "set"
+TO "to"
+TYPE "type"
+WITH "with"
 
 /* Punctuation */
 SEMICOLON ";"
@@ -66,12 +84,17 @@ CLOSE_BRACE "}"
 
 /* Comments */
 LINE_COMMENT "//".*
-BLOCK_COMMENT "(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)"
+BLOCK_COMMENT "(*"[^*)]*"*)"|"{"[^}]*"}" 
 
 %%
-{PROGRAM}|{VAR}|{BEGIN}|{END}|{IF}|{THEN}|{ELSE}|{WHILE}|{FOR}|{DO}|{REPEAT}|{UNTIL}|{CASE}|{OF}|{FUNCTION}|{PROCEDURE}|{BOOLEAN_TRUE}|{BOOLEAN_FALSE} {
+{LINE_COMMENT}|{BLOCK_COMMENT} {
+    // Ignore comments
+}
+
+{PROGRAM}|{VAR}|{BEGIN}|{END}|{IF}|{THEN}|{ELSE}|{WHILE}|{FOR}|{DO}|{REPEAT}|{UNTIL}|{CASE}|{OF}|{FUNCTION}|{PROCEDURE}|{BOOLEAN_TRUE}|{BOOLEAN_FALSE}|{ARRAY}|{CONST}|{DIV}|{DOWNTO}|{FILE}|{GOTO}|{IN}|{LABEL}|{MODULO}|{NIL}|{PACKED}|{RECORD}|{SET}|{TO}|{TYPE}|{WITH} {
     printf("KEYWORD: %s\n", yytext);
 }
+
 {INTEGER}|{REAL}|{CHAR}|{STRING}|{BOOLEAN} {
     printf("DATA_TYPE: %s\n", yytext);
 }
@@ -96,7 +119,6 @@ BLOCK_COMMENT "(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)"
     printf("CHAR_LITERAL: %s\n", yytext);
 }
 
-
 {PLUS}|{MINUS}|{MULTIPLY}|{DIVIDE}|{MOD} {
     printf("OPERATOR: %s\n", yytext);
 }
@@ -105,10 +127,6 @@ BLOCK_COMMENT "(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)"
     printf("COMPARISON_OPERATOR: %s\n", yytext);
 }
 
-
-{LINE_COMMENT}|{BLOCK_COMMENT} {
-    // Ignore comments
-}
 {SEMICOLON}|{COLON}|{COMMA}|{OPEN_PAREN}|{CLOSE_PAREN}|{OPEN_BRACE}|{CLOSE_BRACE} {
     printf("PUNCTUATION: %s\n", yytext);
 }
@@ -121,10 +139,10 @@ BLOCK_COMMENT "(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)"
 . {
     printf("UNRECOGNIZED: %s\n", yytext);
 }
-
 %%
 
 int main() {
     yylex();
     return 0;
 }
+
