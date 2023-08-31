@@ -132,8 +132,10 @@ BLOCK_COMMENT "(*"[^*)]*"*)"|"{"[^}]*"}"
 {CHAR}               printf("DATA_TYPE: CHAR\n");
 {STRING}             printf("DATA_TYPE: STRING\n");
 {BOOLEAN}            printf("DATA_TYPE: BOOLEAN\n");
-{INVOKE_FUNCTION}    printf("INVOKE: %s\n",yytext);
 
+{IDENTIFIER} {
+    printf("IDENTIFIER: %s\n", yytext);
+}
 
 {INTEGER_LITERAL} {
     printf("INTEGER_LITERAL: %s\n", yytext);
