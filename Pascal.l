@@ -86,7 +86,6 @@ CLOSE_BRACE "}"
 LINE_COMMENT "//".*
 BLOCK_COMMENT "(*"[^*)]*"*)"|"{"[^}]*"}" 
 
-INVOKE_FUNCTION {IDENTIFIER}"("[^)]*")"
 
 %%
 {LINE_COMMENT}|{BLOCK_COMMENT} {
@@ -135,9 +134,6 @@ INVOKE_FUNCTION {IDENTIFIER}"("[^)]*")"
 {BOOLEAN}            printf("DATA_TYPE: BOOLEAN\n");
 {INVOKE_FUNCTION}    printf("INVOKE: %s\n",yytext);
 
-{IDENTIFIER} {
-    printf("IDENTIFIER: %s\n", yytext);
-}
 
 {INTEGER_LITERAL} {
     printf("INTEGER_LITERAL: %s\n", yytext);
