@@ -5,6 +5,10 @@
 3. Run the files using: "./a.out <file name>".
 ___________________________________________________________________________________________________________________________________
 
+## NOTE
+1. Just ignore the warnings while compilation.
+2. Write the pascal code in lowercase letters (since Pascal is case insensitive language).
+
 
 ## Commands to follow:
 
